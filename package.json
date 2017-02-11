@@ -5,31 +5,44 @@
   "author": "dental-solution",
   "license": "UNLICENSED",
   "private": false,
-  "contributors": [{
-    "name": "Mhd Salim Bakri",
-    "email": "saleem.bakri@gmail.com"
-  },
-  { "name": "Hasn Arafha",
-    "email": "f.eng.hasn@gmail.com"
-  },
-  {
-    "name": "Abdulazeez Naji",
-    "email": "abdulazeeznaji@gmail.com"
-  },
-  {
-    "name": "Rwaida Almehanni",
-    "email": "rwaida4@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Mhd Salim Bakri",
+      "email": "saleem.bakri@gmail.com"
+    },
+    {
+      "name": "Hasn Arafha",
+      "email": "f.eng.hasn@gmail.com"
+    },
+    {
+      "name": "Abdulazeez Naji",
+      "email": "abdulazeeznaji@gmail.com"
+    },
+    {
+      "name": "Rwaida Almehanni",
+      "email": "rwaida4@gmail.com"
+    }
+  ],
   "scripts": {
-    "postinstall": "npm install -g nodemon",
-    "start": "nodemon index.js"
+    "postinstall": "npm install -g nodemon && curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "start": "nodemon index.js",
+    "lint": "eslint ./"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/dental-solutions/dentisto.git"
   },
   "dependencies": {
+    "angular": "~1.3.16",
+    "angular-mocks": "~1.3.16",
+    "angular-route": "~1.3.16",
+    "angular-ui-bootstrap": "^2.5.0",
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.7",
+    "express": "^4.13.4"
   },
   "devDependencies": {
+    "nodemon": "^1.11.0",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
   }
 }
