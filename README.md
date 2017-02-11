@@ -14,7 +14,7 @@
 
 ## Usage
 
-> Some usage instructions
+> You can start using this website by running "npm start" locally then open local host with port 3000 on browser, or "heroku open" to run the production version on heroku website.
 
 ## Requirements
 
@@ -31,8 +31,9 @@
 From within the root directory:
 
 ```sh
-npm install
-bower install
+// to install predefined dependencies : npm install
+// to add specific package to the dependencies run : npm install --save/--save-dev <package-name>
+
 ```
 
 ### Tasks
