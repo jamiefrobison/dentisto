@@ -1,0 +1,10 @@
+*.log
+.DS_Store
+
+# Dependency Dirs
+bower_components
+node_modules
+
+# Compiled Dirs
+build/
+dist/

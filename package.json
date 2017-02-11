@@ -1,0 +1,35 @@
+{
+  "name": "dentisto",
+  "version": "1.0.0",
+  "description": "this package will help with installing production and development dependencies and run some helpful scripts",
+  "author": "dental-solution",
+  "license": "UNLICENSED",
+  "private": false,
+  "contributors": [{
+    "name": "Mhd Salim Bakri",
+    "email": "saleem.bakri@gmail.com"
+  },
+  { "name": "Hasn Arafha",
+    "email": "f.eng.hasn@gmail.com"
+  },
+  {
+    "name": "Abdulazeez Naji",
+    "email": "abdulazeeznaji@gmail.com"
+  },
+  {
+    "name": "Rwaida Almehanni",
+    "email": "rwaida4@gmail.com"
+  }],
+  "scripts": {
+    "postinstall": "npm install -g nodemon",
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dental-solutions/dentisto.git"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
