@@ -1,6 +1,9 @@
 *.log
 .DS_Store
 
+# DB config
+server/database/config.js
+
 # Dependency Dirs
 bower_components
 node_modules
