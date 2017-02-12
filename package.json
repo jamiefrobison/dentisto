@@ -24,7 +24,7 @@
     }
   ],
   "scripts": {
-    "postinstall": "npm install -g nodemon && curl -s https://raw.githubusercontent.com/reactorcore/pomander/master/bin/install | bash",
+    "postinstall": "npm install -g nodemon",
     "start": "nodemon server/index.js",
     "lint": "eslint ./"
   },
