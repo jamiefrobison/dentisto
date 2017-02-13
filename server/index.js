@@ -1,5 +1,4 @@
 var express = require('express');
-var User = require('./database/users/userModel.js');
 var app = express();
 
 // configure our server with all the middleware and routing

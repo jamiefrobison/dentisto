@@ -27,4 +27,6 @@ db.sync({
   force: true
 });
 
-module.exports = User;
+exports.User = User;
+exports.Student = Student;
+exports.Patient = Patient;

@@ -1,4 +1,7 @@
+var userController = require('../database/users/userController.js');
+
 module.exports = function (app, express) {
-  // write app.get && app.post request handlers here
+  app.post('/signup', userController.signup);
+  // app.post('/signin',userController.signin);
 };
 
