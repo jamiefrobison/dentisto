@@ -1,8 +1,8 @@
 var Model = require('./userModel.js');
 var utils = require('../../config/utils.js');
-
 module.exports = {
   signup: function (req, res) {
+    console.log(req.body);
     var email = req.body.email;
     Model.User.findOne({ where: {email: req.body.email} })
     .then(function(user) {
@@ -12,8 +12,8 @@ module.exports = {
             name: req.body.name,
             email: req.body.email,
             password: hashedPass,
-            gender: gender,
-            phoneNumber: phoneNumber
+            gender: req.body.gender,
+            phoneNumber: req.body.phoneNumber
           }).then(function(user) {
             if (user) {
               if (req.body.university) {
