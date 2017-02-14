@@ -1,6 +1,6 @@
 var dentistoApp = angular.module('dentistoApp', 
 	['ui.router', 'dentisto.studentProfile', 'dentisto.studentLookup',
- 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup']);
+ 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup', 'dentisto.logOut']);
 
 
 
@@ -8,7 +8,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   $urlRouterProvider
   // .when('/home', ['$state', function($state){
-  //   $state.go('home');
+  //   $state.go('sign');
   // }])
   .otherwise('sign');
 
@@ -46,6 +46,9 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
         .state('home.lookUp', {
           templateUrl: 'lookup/lookUp.html',
           controller: 'lookUpCtrl'
+        })
+        .state('home.logOut', {
+          controller: 'logOutCtrl'
         })
         $httpProvider.interceptors.push('AttachTokens');
       })
@@ -105,7 +108,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     });
   };
   auth.logOut = function(){
-    $window.localStorage.removeItem('flapper-news-token');
+    $window.localStorage.removeItem('dentisto');
   };
   return auth;  
 })
