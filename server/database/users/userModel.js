@@ -7,7 +7,8 @@ var User = db.define('User', {
   email: { type: Sequelize.STRING, allowNull: false, unique: true },
   password: { type: Sequelize.STRING, allowNull: false },
   phoneNumber: { type: Sequelize.STRING, field: 'phone_number', allowNull: false },
-  gender: { type: Sequelize.STRING, allowNull: false }
+  gender: { type: Sequelize.STRING, allowNull: false },
+  type: { type: Sequelize.BOOLEAN, allowNull: false}
 });
 
 var Student = db.define('Student', {
