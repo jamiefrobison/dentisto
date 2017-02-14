@@ -8,7 +8,7 @@ angular.module('dentisto.Profile', [])
 			method: 'GET',
 			url: '/profile'
 		}).then(function(resp){
-			console.log(resp);
+			//console.log(resp);
 			return resp;
 		})
 
@@ -20,21 +20,22 @@ angular.module('dentisto.Profile', [])
 })
 
 .controller('ProfileCtrl', function ($scope, Auth,Prof) {
-	$scope.Profile=
-	{name: 'saamr', 
-		email:'saamr@hotmail.com',phone:'2435234'
-		, year:'3', address:'jordan', age:'24', gender:'male'};
+	$scope.Profile={};
+	// {name: 'saamr', 
+	// 	email:'saamr@hotmail.com',phone:'2435234'
+	// 	, year:'3', address:'jordan', age:'24', gender:'male'};
 
-  // Prof.getProfile().then(function(profile){
-  // 		if(profile){
-  // 			$scope.studentProfile=profile;
-  // 		}
-  // 		else
-  // 			console.log('somthing went wrong');
+  Prof.getProfile().then(function(profile){
+  		if(profile){
+  			console.log(profile.data);
+  			$scope.Profile=profile.data;
+  		}
+  		else
+  			console.log('somthing went wrong');
 
-  // }).catch(function(error){
-  // 	console.error(error);
-  // })
+  }).catch(function(error){
+  	console.error(error);
+  })
 
 
 

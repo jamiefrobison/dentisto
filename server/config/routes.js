@@ -5,8 +5,8 @@ module.exports = function (app, express) {
   app.post('/signup', userController.signup);
   app.post('/signin', userController.signin);
 
-  app.use('/studentprofile', utils.decode);
-  app.get('/studentprofile', userController.profileInfo);
+  app.use('/profile', utils.decode);
+  app.get('/profile', userController.profileInfo);
 
   app.use(utils.errorLogger);
   app.use(utils.errorHandler);
