@@ -1,31 +1,35 @@
- angular.module('dentisto.logApp', [])
-.controller('loginCrl', function ($scope, $http) {
-          $scope.user={};
+angular.module('dentisto.logApp', [])
+.controller('loginCrl', function ($scope, $http,$state,Auth) {
+    if(Auth.isAuth()){
+       $state.go('home')
+    }else{
+        $scope.user={};
         $scope.SendData = function () {
-           // use $.param jQuery function to serialize data from JSON 
-            var data = $.param({
+            console.log("i'm here")
+           if($scope.email&&$scope.myForm.user.email.$valid){
+            var data = {
                 email: $scope.email,
                 password: $scope.password
-            });
+            }
         
             var config = {
                 headers : {
-                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+                    'Content-Type': 'application/json'
                 }
             }
 
-            $http.post('/login', data, config)
+            $http.post('/signin', data, config)
             .success(function (data, status, headers, config) {
-                console.log(data) ;
+               Auth.saveToken(data.token);
+               Auth.saveType(data.type);
+               $state.go('home');
+
             })
             .error(function (data, status, header, config) {
-              console.log("error");
+                alert(data.error);
             });
-        };
-    $scope.cancel = function () {
+        }
 
-    $modalInstance.dismiss('cancel');
-};
-
-    });
-
+       }
+    }
+ })

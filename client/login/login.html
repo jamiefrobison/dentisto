@@ -1,5 +1,4 @@
-      <!-- Modal content-->
-      <div class="container">
+<div class="container">
     <div class="row">
       <div class="modal-content" >
         <div class="modal-header" style="padding:35px 50px;">
@@ -7,19 +6,21 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
+          <form role="form" name="myForm" ng-submit="SendData()">
             <div class="form-group">
               <label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
-              <input type="text" class="form-control" id="email" placeholder="you@example.com" ng-model='user.email'>
+              <input type="email"  name="user.email" class="form-control" id="email" placeholder="you@example.com" ng-model='user.email' required>
+              <span ng-show="myForm.user.email.$touched && myForm.user.email.$invalid || myForm.user.email.$dirty">The email is required.</span>
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter password" ng-model="user.password">
+              <input type="password" name="user.password" class="form-control" id="psw" placeholder="Enter password" ng-model="user.password" required>
+              <span ng-show="myForm.user.password.$touched && myForm.user.password.$validators">The password is required.</span>
             </div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
-              <button type="submit" class="btn btn-success btn-block" ng-submit="SendData()"><span class="glyphicon glyphicon-off"></span> Login</button>
+              <button type="submit" class="btn btn-success btn-block" ><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -28,10 +29,5 @@
           <p>Forgot <a href="#">Password?</a></p>
         </div>
       </div>
-      
-
-      
- 
-
 </div>
 </div>

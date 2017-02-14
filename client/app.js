@@ -1,15 +1,15 @@
 var dentistoApp = angular.module('dentistoApp', 
 	['ui.router', 'dentisto.studentProfile', 'dentisto.studentLookup',
- 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup']);
+ 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup', 'dentisto.logOut']);
 
 
 
 dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   $urlRouterProvider
-  .when('/home', ['$state', function($state){
-    $state.go('home');
-  }])
+  // .when('/home', ['$state', function($state){
+  //   $state.go('sign');
+  // }])
   .otherwise('sign');
 
   $stateProvider
@@ -26,7 +26,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
         .state('sign.signup', {
          templateUrl: 'signup/signup.html',
-         controller: 'signupClr'    
+         controller: 'signupClr'
        })
         
         .state('home', {
@@ -47,6 +47,9 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
           templateUrl: 'lookup/lookUp.html',
           controller: 'lookUpCtrl'
         })
+        .state('home.logOut', {
+          controller: 'logOutCtrl'
+        })
         $httpProvider.interceptors.push('AttachTokens');
       })
 
@@ -64,7 +67,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   return attach;
 })
 
-.factory('Auth', function ($http, $location, $window) {
+.factory('Auth', function ($http, $location, $window, $state) {
 
   var auth = {};
   auth.saveToken = function (token){
@@ -85,10 +88,17 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
       return payload.username;
     }
   };
+  auth.saveType = function(type){
+    $window.localStorage['type'] = type;
+  };
 
-  auth.register = function(user){
-    return $http.post('/register', user).success(function(data){
+  auth.register = function(user, config){
+    return $http.post('/signup', user, config).success(function(data){
       auth.saveToken(data.token);
+      auth.saveType(data.type);
+      $state.go('home')
+    }).error(function (data, status, header, config) {
+      alert(data.error);
     });
   };
 
@@ -98,7 +108,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     });
   };
   auth.logOut = function(){
-    $window.localStorage.removeItem('flapper-news-token');
+    $window.localStorage.removeItem('dentisto');
   };
   return auth;  
 })
