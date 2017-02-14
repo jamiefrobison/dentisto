@@ -24,9 +24,7 @@ var Patient = db.define('Patient', {
 Student.belongsTo(User, {foreignKey: 'id'});
 Patient.belongsTo(User, {foreignKey: 'id'});
 
-db.sync({
-  force: true
-});
+db.sync();
 
 exports.User = User;
 exports.Student = Student;

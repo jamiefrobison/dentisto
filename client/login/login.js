@@ -5,11 +5,11 @@ angular.module('dentisto.logApp', [])
     }else{
         $scope.user={};
         $scope.SendData = function () {
-            console.log("i'm here")
-           if($scope.email&&$scope.myForm.user.email.$valid){
+          //console.log($scope.user.email);
+           if($scope.user.email&&$scope.user.password){
             var data = {
-                email: $scope.email,
-                password: $scope.password
+                email: $scope.user.email,
+                password: $scope.user.password
             }
         
             var config = {
@@ -17,17 +17,7 @@ angular.module('dentisto.logApp', [])
                     'Content-Type': 'application/json'
                 }
             }
-
-            $http.post('/signin', data, config)
-            .success(function (data, status, headers, config) {
-               Auth.saveToken(data.token);
-               Auth.saveType(data.type);
-               $state.go('home');
-
-            })
-            .error(function (data, status, header, config) {
-                alert(data.error);
-            });
+            Auth.logIn(data, config);
         }
 
        }
