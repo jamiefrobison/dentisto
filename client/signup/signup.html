@@ -1,5 +1,5 @@
           <!-- Modal content-->
-   <div class="container">
+   <div class="container" ng-init="s=false ; p=false">
     <div class="row">
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
@@ -27,27 +27,39 @@
                    <input type="radio" name="optradio" ng-model="info.male" >Male
                    </label>
                    <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.female">Female
+                   <input type="radio" name="optradio" ng-model="info.female" >Female
                    </label>
                    </form>
-             <div class="form-group">
+             <div class="form-group" >
               <label for="psw"> phoneNum</label>
-              <input type="text" class="form-control" id="psw" placeholder="Enter Your Phone Number..." ng-model="info.phoneNumber">
+              <input type="text" class="form-control" id="psw" placeholder="Enter Your Phone Number..." ng-model="info.phon">
             </div>
-             <div class="form-group">
+            <form >
+              <label for="usrage">choose user type:</label>
+                <br>
+                  <label class="radio-inline">
+                  <input type="radio" name="optradio" value='false' ng-model="student" ng-click="s=false;p=true">student
+                  </label>
+                   <label class="radio-inline">
+                   <input type="radio" name="optradio" value='false' ng-model="patient" ng-click="s=true ; p=false" >patient
+              </label>  
+            </form>
+           
+
+             <div class="form-group" ng-show='s'>
               <label for="psw"> University</label>
               <input type="text" class="form-control" id="psw" placeholder="Enter Your university name if you are student" ng-model="info.university">
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-show='p'>
               <label for="psw">  Address</label>
               <input type="text" class="form-control" id="psw" placeholder="Enter Your address if you are patient" ng-model="info.address">
             </div>
             <div class="checkbox">
               <label><input type="checkbox" value="" checked>Remember me</label>
             </div>
-              <button type="submit" class="btn btn-success btn-block" id="bt" ng-click="SendData()">Submit</button>
+              <button type="submit" class="btn btn-success btn-block" id="bt" ng-submit="SendData()">Submit</button>
           </form>
-        </div>
+        </div>  
         <div class="modal-footer">
           <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
           <p>Not a member? <a href="#">Sign Up</a></p>
