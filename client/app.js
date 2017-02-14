@@ -1,5 +1,5 @@
 var dentistoApp = angular.module('dentistoApp', 
-	['ui.router', 'dentisto.studentProfile', 'dentisto.studentLookup',
+	['ui.router', 'dentisto.Profile', 'dentisto.studentLookup',
  'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup', 'dentisto.logOut']);
 
 
@@ -7,42 +7,40 @@ var dentistoApp = angular.module('dentistoApp',
 dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   $urlRouterProvider
-  // .when('/home', ['$state', function($state){
-  //   $state.go('sign');
-  // }])
+  .when('/home', ['$state', function($state){
+    $state.go('sign.login');
+  }])
   .otherwise('sign');
 
   $stateProvider
   .state('sign', {
+    abstract: true,
     url: '/sign',
     templateUrl: 'sign.html'
-
   })
   .state('sign.login', {
+    url:'',
     templateUrl: 'login/login.html',
     controller: 'loginCrl'
   })
-
-        // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
-        .state('sign.signup', {
-         templateUrl: 'signup/signup.html',
-         controller: 'signupClr'
-       })
-        
-        .state('home', {
-          url: '/home',
-          templateUrl: 'home.html'
-
-        })
-        .state('home.profile', {
-          templateUrl: 'studentprofile/studentProfile.html',
-          controller: 'studentProfileCtrl'
-        })
-        
-        .state('home.myCases', {
-          templateUrl: 'mycases/myCases.html',
-          controller: 'myCasesCtrl'
-        })
+  .state('sign.signup', {
+    templateUrl: 'signup/signup.html',
+    controller: 'signupClr'
+  })    
+  .state('home', {
+    abstract: true,
+    url: '/home',
+    templateUrl: 'home.html'
+  })
+  .state('home.profile', {
+    url: '',
+    templateUrl: 'studentprofile/studentProfile.html',
+    controller: 'ProfileCtrl'
+  })      
+  .state('home.myCases', {
+    templateUrl: 'mycases/myCases.html',
+    controller: 'myCasesCtrl'
+  })
         .state('home.lookUp', {
           templateUrl: 'lookup/lookUp.html',
           controller: 'lookUpCtrl'

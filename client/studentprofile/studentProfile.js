@@ -1,45 +1,45 @@
-angular.module('dentisto.studentProfile', [])
+angular.module('dentisto.Profile', [])
 
-.factory('Studentprof', function($http){
-	var student={};
+.factory('Prof', function($http){
+	var profile={};
 
-	student.getProfile = function(){
+	profile.getProfile = function(){
 		return $http({
 			method: 'GET',
-			url: '/studentprofile'
+			url: '/profile'
 		}).then(function(resp){
 			console.log(resp);
-			return respr;
+			return resp;
 		})
 
 	};
 
+	
 
-	return student;
+	return profile;
 })
 
-.controller('studentProfileCtrl', function ($scope, Studentprof) {
-	$scope.studentProfile={};
-	// {name: 'saamr', 
-	// 	email:'saamr@hotmail.com',phone:'2435234'
-	// 	, year:'3', uni_name:'jordan', age:'24', gender:'male'};
+.controller('ProfileCtrl', function ($scope, Auth,Prof) {
+	$scope.Profile=
+	{name: 'saamr', 
+		email:'saamr@hotmail.com',phone:'2435234'
+		, year:'3', address:'jordan', age:'24', gender:'male'};
 
-  Studentprof.getProfile().then(function(student){
-  		if(student){
-  			console.log(student)
-  			$scope.studentProfile=student;
-  		}
-  		else
-  			console.log('somthing went wrong');
+  // Prof.getProfile().then(function(profile){
+  // 		if(profile){
+  // 			$scope.studentProfile=profile;
+  // 		}
+  // 		else
+  // 			console.log('somthing went wrong');
 
-  }).catch(function(error){
-  	console.error(error);
-  })
-
+  // }).catch(function(error){
+  // 	console.error(error);
+  // })
 
 
-  $scope.updateProfile = function(){
+
+  // $scope.updateProfile = function(){
   	
-  }
+  // }
 
 });
