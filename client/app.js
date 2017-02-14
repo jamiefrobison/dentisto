@@ -95,7 +95,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     return $http.post('/signup', user, config).success(function(data){
       auth.saveToken(data.token);
       auth.saveType(data.type);
-      $state.go('home')
+      $state.go('home.profile')
     }).error(function (data, status, header, config) {
       alert(data.error);
     });
@@ -105,7 +105,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     return $http.post('/signin', user, config).success(function(data){
       auth.saveToken(data.token);
       auth.saveType(data.type);
-      $state.go('home')
+      $state.go('home.profile')
     }).error(function (data, status, header, config) {
       alert(data.error);
     });
