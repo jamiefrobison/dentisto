@@ -1,5 +1,5 @@
 angular.module('dentisto.signup', [])
-.controller('signupClr', function ($scope,$http) {
+.controller('signupClr', function ($scope,$http,$state,Auth) {
   var x="",y="";
   $scope.info= {};
   if($scope.info.mail===undefined){
@@ -19,18 +19,19 @@ $scope.SendData = function () {
             university:$scope.info.university
           };
 
-           var config = {
+          var config = {
             headers : {
               'Content-Type': 'application/json'
             }
           }
-          console.log(data);
           $http.post('/signup',data, config)
           .success(function (data, status, headers, config) {
-            console.log(data) ;
+            console.log(data);
+            Auth.saveToken(data.token);
+            $state.go('home');
           })
           .error(function (data, status, header, config) {
-            console.log("error");
+            alert(data.error);
           });
         };
 

@@ -1,8 +1,8 @@
 var Model = require('./userModel.js');
+var jwt = require('jwt-simple');
 var utils = require('../../config/utils.js');
 module.exports = {
-  signup: function (req, res) {
-    console.log(req.body);
+  signup: function (req, res, next) {
     var email = req.body.email;
     Model.User.findOne({ where: {email: req.body.email} })
     .then(function(user) {
@@ -22,7 +22,8 @@ module.exports = {
                   university: req.body.university
                 }).then(function(student) {
                   if (student) {
-                    res.status(201).send('your account has been created successfully');
+                    var token = jwt.encode(student, 'secret');
+                    res.json({token: token, type: 'student'});
                   }
                 });
               } else {
@@ -31,18 +32,28 @@ module.exports = {
                   address: req.body.address
                 }).then(function(patient) {
                   if (patient) {
-                    res.status(201).send('your account has been created successfully');
+                    var token = jwt.encode(patient, 'secret');
+                    res.json({token: token, type: 'patient'});
                   }
                 });
               }
             } else {
-              res.status(500).send();
+              next(new Error('server error, faild to create new user'));
             }
           });
         });
       } else {
-        res.status(200).send('this account is already existed');
+        next(new Error('this account is already existed'));
       }
     });
+  },
+
+  signin: function(req, res) {
+
+  },
+
+  profileInfo: function(req, res) {
+    console.log(req.user);
   }
+
 };

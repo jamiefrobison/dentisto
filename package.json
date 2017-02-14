@@ -42,7 +42,8 @@
     "express": "^4.13.4",
     "mysql": "^2.13.0",
     "sequelize": "^3.30.2",
-    "bcrypt-nodejs": "0.0.3"
+    "bcrypt-nodejs": "0.0.3",
+    "jwt-simple": "^0.5.0"
 
   },
   "devDependencies": {
