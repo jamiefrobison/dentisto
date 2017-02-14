@@ -3,20 +3,25 @@ var jwt = require('jwt-simple');
 var utils = require('../../config/utils.js');
 module.exports = {
   signup: function (req, res, next) {
-    var email = req.body.email;
     Model.User.findOne({ where: {email: req.body.email} })
     .then(function(user) {
       if (!user) {
         utils.hashpass(req.body.password, function(hashedPass) {
+          if (req.body.university) {
+            var userType = 1;
+          } else {
+            var userType = 0;
+          }
           Model.User.create({
             name: req.body.name,
             email: req.body.email,
             password: hashedPass,
             gender: req.body.gender,
-            phoneNumber: req.body.phoneNumber
+            phoneNumber: req.body.phoneNumber,
+            type: userType
           }).then(function(user) {
             if (user) {
-              if (req.body.university) {
+              if (user.get('type')) {
                 Model.Student.create({
                   id: user.get('id'),
                   university: req.body.university
@@ -48,8 +53,31 @@ module.exports = {
     });
   },
 
-  signin: function(req, res) {
-
+  signin: function(req, res, next) {
+    Model.User.findOne({where: {email: req.body.email}})
+    .then(function(user) {
+      if (user) {
+        utils.comparePass(req.body.password, user.get('password'), function(validate) {
+          if (validate) {
+            if (user.get('type')) {
+              Model.Student.findById(user.get('id')).then(function(student) {
+                var token = jwt.encode(student, 'secret');
+                res.json({token: token, type: 'student'});
+              });
+            } else {
+              Model.Patient.findById(user.get('id')).then(function(patient) {
+                var token = jwt.encode(patient, 'secret');
+                res.json({token: token, type: 'patient'});
+              });
+            }
+          } else {
+            next(new Error('your password is not correct'));
+          }
+        });
+      } else {
+        next(new Error('email is not correct!'));
+      }
+    });
   },
 
   profileInfo: function(req, res) {
