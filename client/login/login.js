@@ -1,7 +1,7 @@
 angular.module('dentisto.logApp', [])
 .controller('loginCrl', function ($scope, $http,$state,Auth) {
     if(Auth.isAuth()){
-       $state.go('home')
+       $state.go('home.profile')
     }else{
         $scope.user={};
         $scope.SendData = function () {
