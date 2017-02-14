@@ -1,6 +1,6 @@
 <!-- Modal content-->
   <form data-toggle="validator" role="form">
-   <div class="container" ng-init="s=false ; p=false">
+   <div class="container" ng-init="student=false ; patient=false">
     <div class="row">
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
@@ -44,19 +44,19 @@
               <label for="usrage" class="control-label">choose user type:</label>
                 <br>
                   <label class="radio-inline">
-                  <input type="radio" name="optradio" value='false' ng-model="student" ng-click="s=false;p=true" >student
+                  <input type="radio" name="optradio" value='false' ng-click="student=true;patient=false" >student
                   </label>
                    <label class="radio-inline">
-                   <input type="radio" name="optradio" value='false' ng-model="patient" ng-click="s=true ; p=false" >patient
+                   <input type="radio" name="optradio" value='false' ng-click="student=false ; patient=true" >patient
               </label>  
             </form>
            
 
-             <div class="form-group" ng-show='p'>
+             <div class="form-group" ng-show='student'>
               <label for="uni" class="control-label"> University</label>
               <input type="text" class="form-control" id="uni" placeholder="Enter Your university name if you are student" ng-model="info.university" required>
             </div>
-            <div class="form-group" ng-show='s'>
+            <div class="form-group" ng-show='patient'>
               <label for="add" class="control-label">  Address</label>
               <input type="text" class="form-control" id="add" placeholder="Enter Your address if you are patient" ng-model="info.address" required> 
             </div>
