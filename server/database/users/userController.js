@@ -82,7 +82,26 @@ module.exports = {
   },
 
   profileInfo: function(req, res) {
-    console.log(req.user);
+    Model.User.findById(req.user.id).then(function(user) {
+      var data = {
+        name: user.get('name'),
+        email: user.get('email'),
+        phoneNumber: user.get('phoneNumber'),
+        gender: user.get('gender')
+      };
+      if (user.get('type')) {
+        Model.Student.findById(user.get('id')).then(function(student) {
+          data['university'] = student.get('university');
+          //console.log(data);
+          res.json(data);
+        });
+      } else {
+        Model.Patient.findById(user.get('id').then(function(patient) {
+          data['address'] = student.get('address');
+          res.json(data);
+        }));
+      }
+    });
   }
 
 };
