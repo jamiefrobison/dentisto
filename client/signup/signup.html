@@ -1,4 +1,4 @@
-          <!-- Modal content-->
+<!-- Modal content-->
   <form data-toggle="validator" role="form">
    <div class="container" ng-init="s=false ; p=false">
     <div class="row">
@@ -26,14 +26,14 @@
                     <input type="password" class="form-control" id="cpsw" data-match="#psw" data-match-error="Whoops, these don't match" placeholder="conpassword..." ng-model='info.conpassword' required>
                    </div>
               </div>
-               <form ng-model="info.gender">
+               <form >
                   <label for="usrage" class="control-label">Gender</label>
                   <br>
                    <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.male" >Male
+                   <input type="radio" name="optradio" ng-model="info.gender" value="male" >Male
                    </label>
                    <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.female" >Female
+                   <input type="radio" name="optradio" ng-model="info.gender" value="female" >Female
                    </label>
                    </form>
              <div class="form-group" >
@@ -72,8 +72,6 @@
           <p>Forgot <a href="#">Password?</a></p>
         </div>
       </div>
-    
-
     </div>
-    </div>
-    </form>
+  </div>
+</form>
