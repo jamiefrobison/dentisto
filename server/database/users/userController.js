@@ -54,6 +54,7 @@ module.exports = {
   },
 
   signin: function(req, res, next) {
+    console.log('this is signin');
     Model.User.findOne({where: {email: req.body.email}})
     .then(function(user) {
       if (user) {

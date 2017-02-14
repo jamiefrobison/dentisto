@@ -6,7 +6,7 @@
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" name="myForm" ng-submit="SendData()">
+          <form role="form" name="myForm" ng-model='myForm' ng-submit="SendData()">
             <div class="form-group">
               <label for="email"><span class="glyphicon glyphicon-user"></span> Email</label>
               <input type="email"  name="user.email" class="form-control" id="email" placeholder="you@example.com" ng-model='user.email' required>

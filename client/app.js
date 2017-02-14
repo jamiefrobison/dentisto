@@ -50,6 +50,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
         .state('home.logOut', {
           controller: 'logOutCtrl'
         })
+
         $httpProvider.interceptors.push('AttachTokens');
       })
 
@@ -102,13 +103,18 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     });
   };
 
-  auth.logIn = function(user){
-    return $http.post('/login', user).success(function(data){
+  auth.logIn = function(user, config){
+    return $http.post('/signin', user, config).success(function(data){
       auth.saveToken(data.token);
+      auth.saveType(data.type);
+      $state.go('home')
+    }).error(function (data, status, header, config) {
+      alert(data.error);
     });
   };
   auth.logOut = function(){
     $window.localStorage.removeItem('dentisto');
+    $window.localStorage.removeItem('type');
   };
   return auth;  
 })
