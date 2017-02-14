@@ -31,7 +31,7 @@ $scope.SendData = function () {
             $state.go('home');
           })
           .error(function (data, status, header, config) {
-            console.log("error");
+            alert(data.error);
           });
         };
 

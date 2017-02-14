@@ -7,5 +7,8 @@ module.exports = function (app, express) {
 
   app.use('/studentprofile', utils.decode);
   app.get('/studentprofile', userController.profileInfo);
+
+  app.use(utils.errorLogger);
+  app.use(utils.errorHandler);
 };
 
