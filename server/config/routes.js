@@ -1,4 +1,5 @@
 var userController = require('../database/users/userController.js');
+var caseController = require('../database/cases/caseController.js');
 var utils = require('./utils.js');
 
 module.exports = function (app, express) {
