@@ -1,6 +1,7 @@
 var dentistoApp = angular.module('dentistoApp', 
 	['ui.router', 'dentisto.Profile', 'dentisto.studentLookup',
- 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup', 'dentisto.logOut']);
+ 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup',
+  'dentisto.logOut', 'dentisto.sign']);
 
 
 
@@ -14,12 +15,11 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   $stateProvider
   .state('sign', {
-    abstract: true,
     url: '/sign',
-    templateUrl: 'sign.html'
+    templateUrl: 'sign/sign.html',
+    controller: 'signCtlr'
   })
   .state('sign.login', {
-    url:'',
     templateUrl: 'login/login.html',
     controller: 'loginCrl'
   })
@@ -31,6 +31,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     abstract: true,
     url: '/home',
     templateUrl: 'home.html'
+    
   })
   .state('home.profile', {
     url: '',
