@@ -6,7 +6,8 @@ module.exports = function (app, express) {
   app.post('/signin', userController.signin);
 
   app.use('/profile', utils.decode);
-  app.get('/profile', userController.profileInfo);
+  app.get('/profile', userController.getProfile);
+  app.post('/profile', userController.updateProfile);
 
   app.use(utils.errorLogger);
   app.use(utils.errorHandler);

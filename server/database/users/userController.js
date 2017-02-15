@@ -81,7 +81,7 @@ module.exports = {
     });
   },
 
-  profileInfo: function(req, res) {
+  getProfile: function(req, res) {
     Model.User.findById(req.user.id).then(function(user) {
       var data = {
         name: user.get('name'),
@@ -101,6 +101,38 @@ module.exports = {
         });
       }
     });
-  }
+  },
 
+  updateProfile: function(req, res) {
+    Model.User.findById(req.user.id).then(function(user) {
+      utils.hashpass(req.body.password, function(hashedPass) {
+        user.updateAttributes({
+          name: req.body.name,
+          phoneNumber: req.body.phoneNumber,
+          gender: req.body.gender,
+          password: hashedPass,
+        })
+        .success(function() {
+          if (user.get('type')) {
+            Model.Student.findById(user.get('id')).then(function(student) {
+              student.updateAttributes({
+                university: req.body.university
+              }).success(function() {
+                res.status(201).json({message: 'Your profile has been updated successfully.'});
+              });
+            });
+          } else {
+            Model.Patient.findById(user.get('id')).then(function(patient) {
+              patient.updateAttributes({
+                address: req.body.address
+              }).success(function() {
+                res.status(201).json({message: 'Your profile has been updated successfully.'});
+              });
+            });
+          }
+        })
+        .error(function() { next(new Error('Opps! something went wrong please try again')); });
+      });
+    });
+  }
 };
