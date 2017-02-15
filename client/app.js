@@ -1,7 +1,7 @@
 var dentistoApp = angular.module('dentistoApp', 
-	['ui.router', 'dentisto.Profile', 'dentisto.studentLookup',
+	['ui.router', 'ui.bootstrap','dentisto.Profile', 'dentisto.studentLookup',
  'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup',
-  'dentisto.logOut', 'dentisto.sign']);
+  'dentisto.logOut', 'dentisto.sign', 'dentisto.updateProfile']);
 
 
 
@@ -57,8 +57,11 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   var attach = {
     request: function (object) {
       var jwt = $window.localStorage.getItem('dentisto');
+      var type = $window.localStorage.getItem('type');
       if (jwt) {
         object.headers['x-access-token'] = jwt;
+        object.headers['user-type'] = type;
+
       }
       object.headers['Allow-Control-Allow-Origin'] = '*';
       return object;
