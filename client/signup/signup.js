@@ -1,8 +1,8 @@
 angular.module('dentisto.signup', [])
 .controller('signupClr', function ($scope,$http,$state,Auth) {
-  if(Auth.isAuth()){
-    $state.go('home');
-  } else{
+  // if(Auth.isAuth()){
+  //   $state.go('home');
+  // } else{
     $scope.info= {};
     $scope.SendData = function () {
       var data = {
@@ -23,7 +23,7 @@ angular.module('dentisto.signup', [])
         }
         Auth.register(data, config);   
     };
-  }
+  //}
   
 
 })
