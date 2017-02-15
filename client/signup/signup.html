@@ -1,77 +1,79 @@
-<!-- Modal content-->
-  <form data-toggle="validator" role="form">
-   <div class="container" ng-init="student=false ; patient=false">
+<form data-toggle="validator" role="form" name="x">
+   <div class="container" ng-init="s=false ; p=false ;sh=false " ng-hide="sh" >
     <div class="row">
       <div class="modal-content">
         <div class="modal-header" style="padding:35px 50px;">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" ng-click="sh=true">&times;</button>
           <h4> Sinup</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
+          <form role="form" name="x">
             <div class="form-group">
               <label for="usrname" class="control-label" ><span class="glyphicon glyphicon-user"></span> Name</label>
               <input type="text" class="form-control" id="usrname" placeholder="Enter Your Full Name..." ng-model="info.name" required>
             </div>
             <div class="form-group">
               <label for="usremail" class="control-label"> Email</label>
-              <input type="text" class="form-control" id="usremail" placeholder="Enter Your Full Name..." ng-model='info.email' required>
+              <input type="email" class="form-control" id="usremail" placeholder="Enter Your Full Name..." ng-model='info.email' required>
               </div>
+               <form name="myForm">
                <div class="form-group">
-                 <label for="psw" class="control-label" > Password</label>
-                     <div class="form-group col-sm-6">
-                     <input type="password" class="form-control" id="psw" data-minlength="6" placeholder="password..." ng-model='info.password' required>
-                    </div>
-                    <div class="form-group col-sm-6">
-                    <input type="password" class="form-control" id="cpsw" data-match="#psw" data-match-error="Whoops, these don't match" placeholder="conpassword..." ng-model='info.conpassword' required>
-                   </div>
-              </div>
-               <form >
+               <label for="usrpassword" class="control-label"> password</label>
+               <input type="password" class="form-control"  name="info.password" id="info.password" ng-model="info.password"  placeholder="Password"  ng-minlength="6" required/>
+               <div ng-show="myForm.info.password.$invalid">password should be 6 character min... </div>
+               </div>
+               <div class="form-group">
+               <label for="usrpassword" class="control-label">con-password</label>
+               <input type="password" class="form-control"  name="info.conpassword" id="info.conpassword" ng-model="info.conpassword" placeholder="Confirm password" pw-check="info.password" required>
+               </div>
+               </form>
+               <form ng-model="info.gender" ng-init="info.gender=0" ng-click='confirmtest()'>
+               <div class="alert alert-warning" ng-show="f">
+               <strong>Warning!</strong> Passwords don't match.
+               </div>
                   <label for="usrage" class="control-label">Gender</label>
+                   <br>
+                   <label class="radio-inline">
+                   <input type="radio" name="optradio" ng-model="info.gender" value='male'>Male
+                   </label>
+                   <label class="radio-inline">
+                   <input type="radio" name="optradio" ng-model="info.gender" value='female' >Female
+                   </label>
+               </form>
+               <div class="form-group" >
+                  <label for="phn" class="control-label"> phoneNum</label>
+                  <input type="text" class="form-control" id="phn" placeholder="Enter Your Phone Number..." ng-model="info.phoneNumber" required>
+               </div>
+               <form >
+                  <label for="usrage" class="control-label">choose user type:</label>
                   <br>
-                   <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.gender" value="male" >Male
-                   </label>
-                   <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.gender" value="female" >Female
-                   </label>
-                   </form>
-             <div class="form-group" >
-              <label for="phn" class="control-label"> phoneNum</label>
-              <input type="text" class="form-control" id="phn" placeholder="Enter Your Phone Number..." ng-model="info.phoneNumber" required>
-            </div>
-            <form >
-              <label for="usrage" class="control-label">choose user type:</label>
-                <br>
-                  <label class="radio-inline">
-                  <input type="radio" name="optradio" value='false' ng-click="student=true;patient=false" >student
+                  <label class="radio-inline" >
+                  <input type="radio" name="optradio" value='false' ng-model="student" ng-click="s=false;p=true" >student
                   </label>
-                   <label class="radio-inline">
-                   <input type="radio" name="optradio" value='false' ng-click="student=false ; patient=true" >patient
-              </label>  
-            </form>
-           
-
-             <div class="form-group" ng-show='student'>
-              <label for="uni" class="control-label"> University</label>
-              <input type="text" class="form-control" id="uni" placeholder="Enter Your university name if you are student" ng-model="info.university" required>
+                  <label class="radio-inline">
+                  <input type="radio" name="optradio" value='false' ng-model="patient" ng-click="s=true ; p=false" >patient
+                  </label>  
+                </form>
+               <div class="form-group" ng-show='p'>
+                  <label for="uni" class="control-label"> University</label>
+                  <input type="text" class="form-control" id="uni" placeholder="Enter Your university name if you are student" ng-model="info.university" >
+               </div>
+               <div class="form-group" ng-show='s'>
+                  <label for="add" class="control-label">  Address</label>
+                  <input type="text" class="form-control" id="add" placeholder="Enter Your address if you are patient" ng-model="info.address" > 
+               </div>
+               <div class="checkbox">
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+               </div>
+                  <button type="submit" class="btn btn-success btn-block" id="bt" ng-click="SendData()">Submit</button>
+              </form>
+              </div>  
+              <div class="modal-footer">
+              <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal" ng-click="sh=true"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+              <p>Not a member? <a href="#">Sign Up</a></p>
+              <p>Forgot <a href="#">Password?</a></p>
+              </div>
             </div>
-            <div class="form-group" ng-show='patient'>
-              <label for="add" class="control-label">  Address</label>
-              <input type="text" class="form-control" id="add" placeholder="Enter Your address if you are patient" ng-model="info.address" required> 
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-              <button type="submit" class="btn btn-success btn-block" id="bt" ng-click="SendData()">Submit</button>
-          </form>
-        </div>  
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-          <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
         </div>
-      </div>
-    </div>
-  </div>
-</form>
+       </div>
+    </form>
