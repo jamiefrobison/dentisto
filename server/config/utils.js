@@ -32,7 +32,7 @@ exports.decode = function (req, res, next) {
   var token = req.headers['x-access-token'];
   var user;
   if (!token) {
-    return res.send(403); // send forbidden if a token is not provided
+    return res.status(403).send(); // send forbidden if a token is not provided
   }
   
   try {
