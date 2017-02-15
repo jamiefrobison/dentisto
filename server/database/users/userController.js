@@ -92,14 +92,13 @@ module.exports = {
       if (user.get('type')) {
         Model.Student.findById(user.get('id')).then(function(student) {
           data['university'] = student.get('university');
-          //console.log(data);
           res.json(data);
         });
       } else {
-        Model.Patient.findById(user.get('id').then(function(patient) {
-          data['address'] = student.get('address');
+        Model.Patient.findById(user.get('id')).then(function(patient) {
+          data['address'] = patient.get('address');
           res.json(data);
-        }));
+        });
       }
     });
   }
