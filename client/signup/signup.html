@@ -1,4 +1,4 @@
-<form data-toggle="validator" role="form" name="x">
+ <form data-toggle="validator" role="form" ng-model="x">
    <div class="container" ng-init="s=false ; p=false ;sh=false " ng-hide="sh" >
     <div class="row">
       <div class="modal-content">
@@ -14,7 +14,8 @@
             </div>
             <div class="form-group">
               <label for="usremail" class="control-label"> Email</label>
-              <input type="email" class="form-control" id="usremail" placeholder="Enter Your Full Name..." ng-model='info.email' required>
+              <input type="email" class="form-control" id="usremail" placeholder="Enter Your Full Name..." name='info.email' ng-model='info.email' required>
+              <span ng-show="x.info.email.$touched && x.info.email.$invalid || x.info.email.$dirty">The email is required.</span>
               </div>
                <form name="myForm">
                <div class="form-group">
@@ -34,20 +35,20 @@
                   <label for="usrage" class="control-label">Gender</label>
                    <br>
                    <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.gender" value='male'>Male
+                   <input type="radio" name="optradio" ng-model="info.gender" >Male
                    </label>
                    <label class="radio-inline">
-                   <input type="radio" name="optradio" ng-model="info.gender" value='female' >Female
+                   <input type="radio" name="optradio" ng-model="info.gender" >Female
                    </label>
                </form>
-               <div class="form-group" >
+               <div class="form-group" >  
                   <label for="phn" class="control-label"> phoneNum</label>
                   <input type="text" class="form-control" id="phn" placeholder="Enter Your Phone Number..." ng-model="info.phoneNumber" required>
                </div>
                <form >
                   <label for="usrage" class="control-label">choose user type:</label>
                   <br>
-                  <label class="radio-inline" >
+                  <label class="radio-inline">
                   <input type="radio" name="optradio" value='false' ng-model="student" ng-click="s=false;p=true" >student
                   </label>
                   <label class="radio-inline">
