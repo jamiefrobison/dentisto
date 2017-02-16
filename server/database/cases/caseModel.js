@@ -1,6 +1,6 @@
 var db = require('../config.js');
 var Sequelize = require('sequelize');
-var UserModel = require('../users/UserModel.js');
+var UserModel = require('../users/userModel.js');
 
 var Case = db.define('Case', {
   id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },

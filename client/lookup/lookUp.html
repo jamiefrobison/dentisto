@@ -5,6 +5,7 @@
    <div class="media"  ng-repeat="x in cases | filter: search" >
     <div class="media-left media-top">
       <img  src='t1.jpg' class="media-object" style="width:80px">
+
     </div>
     <div class="media-body">
     <form class="form-horizontal">
@@ -36,6 +37,7 @@
      <div class="col-sm-10" ng-show = "!type">
       <label class="control-label col-sm-2" >University:</label>
       <p class="form-control-static" ng-model="x.university">{{x.university}}</p>
+
      </div>
      <div class="col-sm-10">
       <label class="control-label col-sm-2" >Case Description:</label>
@@ -46,4 +48,5 @@
 </div>
 <hr>
 </div> 
+
 </div>

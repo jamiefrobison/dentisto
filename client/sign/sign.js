@@ -3,6 +3,6 @@ angular.module('dentisto.sign', [])
   if(Auth.isAuth()){
   	$state.go('home.profile')
   } else{
-  	$state.go('sign.login')
+  	$state.go('sign.slideBar')
   }
 });

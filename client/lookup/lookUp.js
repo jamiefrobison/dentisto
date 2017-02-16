@@ -21,6 +21,7 @@ angular.module('dentisto.studentLookup', [])
     });
 
 
+
 	$scope.searchFun=function(){ //search function ...
 		$scope.s=true;
 		$scope.default=false;
