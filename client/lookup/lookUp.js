@@ -6,7 +6,6 @@ angular.module('dentisto.studentLookup', [])
 	$scope.default=true; // to display the default data ..
 	$scope.s=false; // to display the search data ..
 
-
 		if(Auth.getUser()==="student"){
 			$scope.type = true;
 		} else {
@@ -40,9 +39,6 @@ angular.module('dentisto.studentLookup', [])
 		}
 
 	}
-
-
-
 
    //try this one...
 
