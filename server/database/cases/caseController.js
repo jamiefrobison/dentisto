@@ -14,7 +14,13 @@ module.exports = {
       var Query = 'SELECT cases.type, users.name, users.email, users.phone_number, users.gender, students.university FROM cases, users, students WHERE cases.UserId = students.id AND cases.UserId = users.id  order by cases.createdAt DESC';
     }
     db.query(Query, { type: Sequelize.QueryTypes.SELECT }).then(function(cases){
-      res.json(cases);
+      if(cases){
+        res.json(cases);
+      }
     });
+  },
+
+  addNewCase: function (req, res) {
+
   }
 };

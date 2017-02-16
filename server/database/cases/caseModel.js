@@ -4,7 +4,8 @@ var UserModel = require('../users/UserModel.js');
 
 var Case = db.define('Case', {
   id: { type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true },
-  type: { type: Sequelize.STRING, allowNull: false }
+  type: { type: Sequelize.STRING, allowNull: false },
+  description: { type: Sequelize.STRING }
 });
 
 Case.belongsTo(UserModel.User);
