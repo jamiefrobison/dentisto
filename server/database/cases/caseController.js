@@ -10,7 +10,7 @@ module.exports = {
     if(userType){
       var Query = 'SELECT Cases.type, Cases.description, Users.name, Users.email, Users.phone_number, Users.gender, Patients.address FROM Cases, Users, Patients WHERE Cases.UserId = Patients.id AND Cases.UserId = Users.id  order by Cases.createdAt DESC';
     } else {
-      var Query = 'SELECT Cases.type, Cases.description, Users.name, Users.email, Users.phone_number, Users.gender, Students.university FROM Cases, Users, Students WHERE Cases.UserId = students.id AND Cases.UserId = Users.id  order by Cases.createdAt DESC';
+      var Query = 'SELECT Cases.type, Cases.description, Users.name, Users.email, Users.phone_number, Users.gender, Students.university FROM Cases, Users, Students WHERE Cases.UserId = Students.id AND Cases.UserId = Users.id  order by Cases.createdAt DESC';
     }
     db.query(Query, { type: Sequelize.QueryTypes.SELECT }).then(function(cases) {
       if (cases) {
@@ -46,7 +46,7 @@ module.exports = {
   removeCase: function (req, res, next) {
     caseModel.Case.destroy({ where: {id: req.headers.id} }).then(function(count) {
       if (count) {
-        res.status(202).send('your case has been deleted successfully!');
+        res.json({'message': 'your case has been deleted successfully!'});
       } else {
         next(new Error('Faild to delete this case'));
       }

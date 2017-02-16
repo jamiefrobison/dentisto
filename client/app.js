@@ -136,9 +136,10 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     };
 
   auth.getCases = function(){
+
       return $http.get('/mycases')
       .success(function (data, status, headers, config) {
-        return data
+       
       })
       .error(function (data, status, header, config) {
         alert(data.error)
@@ -146,13 +147,13 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   };
 
 
-  auth.delete = function(id){
+  auth.deleteCase = function(id){
        var config = {
                 headers : {
                     'id': id
                 }
             }
-      return $http.Delete('/removecase',config)
+      return $http.delete('/removecase',config)
       .success(function (data, status, headers, config) {
         alert(data.message)
       })
