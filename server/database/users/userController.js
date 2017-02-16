@@ -104,35 +104,37 @@ module.exports = {
   },
 
   updateProfile: function(req, res) {
+    console.log(req.body);
     Model.User.findById(req.user.id).then(function(user) {
-      utils.hashpass(req.body.password, function(hashedPass) {
-        user.updateAttributes({
-          name: req.body.name,
-          phoneNumber: req.body.phoneNumber,
-          gender: req.body.gender,
-          password: hashedPass,
-        })
-        .success(function() {
-          if (user.get('type')) {
-            Model.Student.findById(user.get('id')).then(function(student) {
-              student.updateAttributes({
-                university: req.body.university
-              }).success(function() {
-                res.status(201).json({message: 'Your profile has been updated successfully.'});
-              });
-            });
-          } else {
-            Model.Patient.findById(user.get('id')).then(function(patient) {
-              patient.updateAttributes({
-                address: req.body.address
-              }).success(function() {
-                res.status(201).json({message: 'Your profile has been updated successfully.'});
-              });
-            });
-          }
-        })
-        .error(function() { next(new Error('Opps! something went wrong please try again')); });
-      });
+      if(req.body.password){
+        utils.hashpass(req.body.password, function(hash){module.exports.updateData(hash, user, req, res)});
+      } else {
+        module.exports.updateData(null, user, req, res);
+      }
     });
-  }
+  },
+
+  updateData: function(hashedPass, user, req, res) {
+    if(hashedPass){ req.body.password = hashedPass }
+    user.updateAttributes(req.body)
+    .then(function() {
+      if (user.get('type')) {
+        Model.Student.findById(user.get('id')).then(function(student) {
+          student.updateAttributes(req.body).then(function() {
+            res.status(201).json({message: 'Your profile has been updated successfully.'});
+          });
+        });
+      } else {
+        Model.Patient.findById(user.get('id')).then(function(patient) {
+          patient.updateAttributes(req.body).then(function() {
+            res.status(201).json({message: 'Your profile has been updated successfully.'});
+          });
+        });
+      }
+      res.status(201).json({message: 'Your profile has been updated successfully.'});
+    })
+    .error(function() { next(new Error('Opps! something went wrong please try again')); });
+  }  
 };
+
+
