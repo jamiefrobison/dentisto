@@ -2,43 +2,43 @@
 <div class="modal-header">
 <h3 class="modal-title">update profile</h3>
 </div>
-<div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label" >Name: </label>
+<div class="form-group col-sm-offset-1">
+  <label for="example-text-input" class="col-2 col-form-label pull-left" >    Name: </label>
   <div class="col-10">
-    <input class="form-control" type="text" value="user name" id="example-text-input" ng-model='updateuser.name'>
+    <input class="form-control form-control:focus" type="text" value="user name" id="example-text-input" ng-model="updateuser.name">
   </div>
 </div>
 
-<div class="form-group row">
-  <label for="example-password-input" class="col-2 col-form-label">Password: </label>
+<div class="form-group col-sm-offset-1">
+  <label for="example-password-input" class="col-2 col-form-label pull-left">      Password: </label>
   <div class="col-10">
-    <input class="form-control" type="password"  id="example-password-input" ng-model='updateuser.password'>
+    <input class="form-control" type="password"  id="example-password-input" ng-model="updateuser.password">
   </div>
 </div>
 
-<div class="form-group row">
-  <label for="example-text-input" class="col-2 col-form-label">Phone Number: </label>
+<div class="form-group col-sm-offset-1">
+  <label for="example-text-input" class="col-2 col-form-label pull-left">    Phone Number: </label>
   <div class="col-10">
-    <input class="form-control" type="text" value="Phone Number" id="example-text-input" ng-model='updateuser.phoneNumber'>
+    <input class="form-control" type="text" value="Phone Number" id="example-text-input" ng-model="updateuser.phoneNumber">
   </div>
 </div>
 
-<div class="form-group row" ng-show='updateuser.university'>
-  <label for="example-text-input" class="col-2 col-form-label">University: </label>
+<div class="form-group col-sm-offset-1" ng-show="type">
+  <label for="example-text-input" class="col-2 col-form-label pull-left">    University: </label>
   <div class="col-10">
-    <input class="form-control" type="text" value="Artisanal kale" id="example-text-input" ng-model='updateuser.university' >
+    <input class="form-control" type="text" value="Artisanal kale" id="example-text-input" ng-model="updateuser.university" >
   </div>
 </div>
 
-<div class="form-group row" ng-show='updateuser.address'>
-  <label for="example-text-input" class="col-2 col-form-label">Address: </label>
+<div class="form-group col-sm-offset-1" ng-show="!type">
+  <label for="example-text-input" class="col-2 col-form-label pull-left">    Address: </label>
   <div class="col-10">
-    <input class="form-control" type="text" value="Address" id="example-text-input" ng-model='updateuser.address' >
+    <input class="form-control" type="text" value="Address" id="example-text-input" ng-model="updateuser.address" >
   </div>
 </div>
 <div class="modal-footer">
   <button class="btn btn-warning" type="button"
   ng-click="close()">Close</button>
-  <button class="btn btn-warning" type="button"
+  <button class="btn btn-warning" type="button" ng-show="updateuser.name || updateuser.email || updateuser.phoneNumber || updateuser.university || updateuser.address"
   ng-click="update()">update</button>
 </div>
