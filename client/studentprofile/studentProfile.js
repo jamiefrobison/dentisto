@@ -1,4 +1,4 @@
-angular.module('dentisto.Profile', ['dentisto.updateProfile', 'ui.bootstrap'])
+angular.module('dentisto.Profile', ['ui.bootstrap'])
 
 .factory('Prof', function($http){
 	var profile={};

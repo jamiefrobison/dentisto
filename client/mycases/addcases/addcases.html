@@ -1,12 +1,11 @@
-<div></div>
-<div></div>
+
 <br/>
 <div class="form-group col-sm-offset-1">
 
             <label class="col-2 col-form-label pull-left" >case type: </label>
               <div class="col-10">
 
-              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" ng-model='case.type'>
+              <select class="custom-select mb-2 mr-sm-2 mb-sm-0" ng-model='ucase.type'>
                 <option value="Composite Restoration">
                   Composite Restoration 
                 </option>
@@ -29,15 +28,15 @@
         <div class="form-group col-sm-offset-1">
               <label class="col-2 col-form-label pull-left">case description:</label>
               <div class="col-10">
-                <textarea class="form-control" rows="3" ng-mode='case.description'></textarea>
+                <textarea class="form-control" rows="3" ng-mode='ucase.description'></textarea>
               </div>
               </div>
 
               <div class="modal-footer">
         <button class="btn btn-warning" type="button"
         ng-click="close()">Close</button>
-        <button class="btn btn-warning" type="button" ng-show="case.type"
-        ng-click="addcase()">add case</button>
+        <button class="btn btn-warning" type="button" ng-show="ucase.type"
+        ng-click="addCase()">add case</button>
       </div>
           </div>
         </div>

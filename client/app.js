@@ -1,6 +1,6 @@
 var dentistoApp = angular.module('dentistoApp', 
 	['ui.router', 'ui.bootstrap','dentisto.Profile', 'dentisto.studentLookup',
- 'dentisto.Cases', 'dentisto.logApp', 'dentisto.signup',
+ 'dentisto.userCases', 'dentisto.logApp', 'dentisto.signup',
   'dentisto.logOut', 'dentisto.sign', 'dentisto.updateProfile', 'dentisto.addcases']);
 
 
@@ -42,7 +42,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   })      
   .state('home.myCases', {
     templateUrl: 'mycases/myCases.html',
-    controller: 'CasesCtrl'
+    controller: 'casesCtrl'
   })
   .state('home.lookUp', {
     templateUrl: 'lookup/lookUp.html',
@@ -124,6 +124,43 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     $window.localStorage.removeItem('dentisto');
     $window.localStorage.removeItem('type');
   };
+
+  auth.addcase = function(caseArg){
+      return $http.post('/mycases',caseArg)
+      .success(function (data, status, headers, config) {
+        alert(data.message);
+      })
+      .error(function (data, status, header, config) {
+        alert(data.error)
+      });
+    };
+
+  auth.getCases = function(){
+      return $http.get('/mycases')
+      .success(function (data, status, headers, config) {
+        return data
+      })
+      .error(function (data, status, header, config) {
+        alert(data.error)
+    });
+  };
+
+
+  auth.delete = function(id){
+       var config = {
+                headers : {
+                    'id': id
+                }
+            }
+      return $http.Delete('/removecase',config)
+      .success(function (data, status, headers, config) {
+        alert(data.message)
+      })
+      .error(function (data, status, header, config) {
+        alert(data.error)
+    });
+  };
+
   return auth;  
 })
 .run(function ($rootScope, $state, Auth) {

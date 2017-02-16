@@ -1,20 +1,16 @@
-angular.module('dentisto.addcases', [])
+angular.module('dentisto.addcases', ['ui.bootstrap'])
 
-.controller('addCasesCtrl', function($scope, $rootScope,$http, $state, $modalInstance, Auth) {
-  $scope.case= {};
+
+.controller('addUserCaseCtrl',function($scope, Auth,$http, $state, $modalInstance) {
+  console.log('1111111111111111')
+  $scope.ucase= {};
   $scope.close = function () {
   	$modalInstance.dismiss('cancel');
   };
 
-  $scope.addcase = function(){
-  	$http.post('/mycases',$scope.case)
-      .success(function (data, status, headers, config) {
-        alert(data.message);
-        $scope.close();    
-      })
-      .error(function (data, status, header, config) {
-        alert(data.error)
-        $scope.close();
-      });
+  $scope.addCase = function(){
+    console.log('add case has been invoked')
+    Auth.addcase($scope.ucase);
+    $scope.close();
   };  
 });

@@ -1,25 +1,23 @@
-angular.module('dentisto.Cases', ['ui.bootstrap', 'dentisto.addcases'])
+angular.module('dentisto.userCases', ['ui.bootstrap'])
 
-.factory('Cases', function ($window, $http) {
-  	var cases={};
 
-  	cases.addcase =function(){
 
-  	};
+.controller('casesCtrl', function($scope, $modal, Auth){
+  
+  $scope.mycases =Auth.getCases();
+  $scope.flag = ($scope.mycases.length>0)? true:false;
 
-  	cases.delete =function(){
-
-  	};
-  	return cases;
-})
-
-.controller('CasesCtrl', function($scope, $modal){
-	$scope.mycases = [];
-
+  console.log($scope.flag)
 	$scope.openAddCase = function () {
       var modalInstance = $modal.open({
-	    controller: 'addCasesCtrl',
+	    controller: 'addUserCaseCtrl',
         templateUrl: 'mycases/addcases/addcases.html'
       });
-    }
+  }
+
+  $scope.delete = function (id) {
+    Auth.deleteCase(id);
+
+  }
+
 })

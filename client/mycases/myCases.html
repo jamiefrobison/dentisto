@@ -1,15 +1,20 @@
-<div ng-show='!!mycases'>
-  <strong class=''> no thing to show, <div ng-click='openAddCase()'>add new case!!! </div>
+<div ng-show='!flag'>
+  <strong class=''> no thing to show, <div ng-click='openAddCase()'>add new case!!! </div>  
   </strong>
 </div>
 
-<div ng-show='mycases'>
-	
-  
+<div ng-show='flag'>
+
+<div ng-repeat='case in mycases'>
+	<div><strong> case Type: </strong>{{case.type}}</div>	
+	<div><strong> Desc: </strong>{{case.description}}</div>
+	<div><strong> Date created:</strong>{{case.date}}</div>
+	<div ng-click='delete(case.id)'> delete</div>
+</div>>		
 
   <div class="col-xs-12 col-sm-4 col-lg-12 text-center"> 
-    <button ng-click="open()" class="btn btn-warning">add new case</button>
+    <button ng-click="openAddCase()" class="btn btn-warning">add new case</button>
   </div>
-</div>>
+</div>
 
 
