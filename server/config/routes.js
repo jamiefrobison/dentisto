@@ -11,9 +11,9 @@ module.exports = function (app, express) {
   app.post('/profile', userController.updateProfile);
 
   app.get('/lookup', caseController.lookup);
-  // app.get('/mycases', caseController.fetchMyCases);
+  app.get('/mycases', caseController.fetchMyCases);
   app.post('/mycases', caseController.addNewCase);
-  // app.delete('/removecase', caseController.removeCase);
+  app.delete('/removecase', caseController.removeCase);
 
   app.use(utils.errorLogger);
   app.use(utils.errorHandler);
