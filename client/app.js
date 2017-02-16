@@ -80,6 +80,10 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   auth.getToken = function (){
     return $window.localStorage['dentisto'];
   };
+
+  auth.getUser = function (){
+    return $window.localStorage['type'];
+  };
   auth.isAuth = function () {
     return !!$window.localStorage.getItem('dentisto');
   };

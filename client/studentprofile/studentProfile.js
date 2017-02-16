@@ -23,7 +23,6 @@ angular.module('dentisto.Profile', ['ui.bootstrap', 'dentisto.updateProfile'])
 
   Prof.getProfile().then(function(profile){
   		if(profile){
-  			console.log(profile.data);
   			$scope.Profile=profile.data;
         $rootScope.Profile=profile.data;
   		}
