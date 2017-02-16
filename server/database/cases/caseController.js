@@ -6,10 +6,11 @@ var db = require('../config.js');
 module.exports = {
   lookup: function (req, res, next) {
     var userType = req.headers['user-type'] === 'student' ? 1 : 0;
-    if (userType) {
-      var Query = 'SELECT cases.type, cases.description, users.name, users.email, users.phone_number, users.gender, patients.address FROM cases, users, patients WHERE cases.UserId = patients.id AND cases.UserId = users.id  order by cases.createdAt DESC';
+
+    if(userType){
+      var Query = 'SELECT Cases.type, Cases.description, Users.name, Users.email, Users.phone_number, Users.gender, Patients.address FROM Cases, Users, Patients WHERE Cases.UserId = Patients.id AND Cases.UserId = Users.id  order by Cases.createdAt DESC';
     } else {
-      var Query = 'SELECT cases.type, cases.description, users.name, users.email, users.phone_number, users.gender, students.university FROM cases, users, students WHERE cases.UserId = students.id AND cases.UserId = users.id  order by cases.createdAt DESC';
+      var Query = 'SELECT Cases.type, Cases.description, Users.name, Users.email, Users.phone_number, Users.gender, Students.university FROM Cases, Users, Students WHERE Cases.UserId = students.id AND Cases.UserId = Users.id  order by Cases.createdAt DESC';
     }
     db.query(Query, { type: Sequelize.QueryTypes.SELECT }).then(function(cases) {
       if (cases) {

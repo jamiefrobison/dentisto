@@ -1,7 +1,7 @@
 var dentistoApp = angular.module('dentistoApp', 
 	['ui.router', 'ui.bootstrap','dentisto.Profile', 'dentisto.studentLookup',
- 'dentisto.studentCases', 'dentisto.logApp', 'dentisto.signup',
-  'dentisto.logOut', 'dentisto.sign', 'dentisto.updateProfile']);
+ 'dentisto.Cases', 'dentisto.logApp', 'dentisto.signup',
+  'dentisto.logOut', 'dentisto.sign', 'dentisto.updateProfile', 'dentisto.addcases']);
 
 
 
@@ -9,7 +9,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
 
   $urlRouterProvider
   .when('/home', ['$state', function($state){
-    $state.go('sign.login');
+    $state.go('sign.slideBar');
   }])
   .otherwise('sign');
 
@@ -18,6 +18,9 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     url: '/sign',
     templateUrl: 'sign/sign.html',
     controller: 'signCtlr'
+  })
+  .state('sign.slideBar', {
+    templateUrl: 'sign/slidebar.html'
   })
   .state('sign.login', {
     templateUrl: 'login/login.html',
@@ -30,8 +33,7 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   .state('home', {
     abstract: true,
     url: '/home',
-    templateUrl: 'home.html'
-    
+    templateUrl: 'home.html'  
   })
   .state('home.profile', {
     url: '',
@@ -40,18 +42,18 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
   })      
   .state('home.myCases', {
     templateUrl: 'mycases/myCases.html',
-    controller: 'myCasesCtrl'
+    controller: 'CasesCtrl'
   })
-        .state('home.lookUp', {
-          templateUrl: 'lookup/lookUp.html',
-          controller: 'lookUpCtrl'
-        })
-        .state('home.logOut', {
-          controller: 'logOutCtrl'
-        })
+  .state('home.lookUp', {
+    templateUrl: 'lookup/lookUp.html',
+    controller: 'lookUpCtrl'
+  })    
+  .state('home.logOut', {
+    controller: 'logOutCtrl'
+  })
 
         $httpProvider.interceptors.push('AttachTokens');
-      })
+  })
 
 .factory('AttachTokens', function ($window) {
   var attach = {

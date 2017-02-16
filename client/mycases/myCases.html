@@ -1,1 +1,15 @@
-<select data-ng-options="o for o in options" data-ng-model="selectedOption"></select>
+<div ng-show='!!mycases'>
+  <strong class=''> no thing to show, <div ng-click='openAddCase()'>add new case!!! </div>
+  </strong>
+</div>
+
+<div ng-show='mycases'>
+	
+  
+
+  <div class="col-xs-12 col-sm-4 col-lg-12 text-center"> 
+    <button ng-click="open()" class="btn btn-warning">add new case</button>
+  </div>
+</div>>
+
+

@@ -28,15 +28,7 @@ angular.module('dentisto.signup', [])
               'Content-Type': 'application/json'
             }
       }
-
       Auth.register(data, config);
-          // $http.post('/signup',data, config)
-          // .success(function (data, status, headers, config) {
-          //   console.log(data) ;
-          // })
-          // .error(function (data, status, header, config) {
-          //   console.log("error");
-          // });
     };
   }
 });

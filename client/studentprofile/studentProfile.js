@@ -1,4 +1,4 @@
-angular.module('dentisto.Profile', ['ui.bootstrap', 'dentisto.updateProfile'])
+angular.module('dentisto.Profile', ['dentisto.updateProfile', 'ui.bootstrap'])
 
 .factory('Prof', function($http){
 	var profile={};
@@ -14,34 +14,21 @@ angular.module('dentisto.Profile', ['ui.bootstrap', 'dentisto.updateProfile'])
 	return profile;
 })
 
-.controller('ProfileCtrl', function ($scope, $rootScope,$modal,Auth, Prof) {
-	$scope.Profile={};
-  
-	// {name: 'saamr', 
-	// 	email:'saamr@hotmail.com',phone:'2435234'
-	// 	, year:'3', address:'jordan', age:'24', gender:'male'};
-
+.controller('ProfileCtrl', function ($scope, $modal,Auth, Prof) {
+  $scope.Profile={};
   Prof.getProfile().then(function(profile){
-  		if(profile){
-  			$scope.Profile=profile.data;
-        $rootScope.Profile=profile.data;
-  		}
-  		else
-  			console.log('somthing went wrong');
-
+  	if(profile){
+  	  $scope.Profile=profile.data;
+  	} else
+  	  console.log('somthing went wrong');
   }).catch(function(error){
   	console.error(error);
   })
 
   $scope.open = function () {
-                var modalInstance = $modal.open({
-					           controller: 'updateProfileCtrl',
-                    templateUrl: 'studentprofile/editProfile/updateProfile.html',
-                });
-            }
-
-  // $scope.updateProfile = function(){
-  	
-  // }
-
+    var modalInstance = $modal.open({
+		  controller: 'updateProfileCtrl',
+      templateUrl: 'studentprofile/editProfile/updateProfile.html',
+    });
+  }
 });
