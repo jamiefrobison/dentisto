@@ -125,6 +125,17 @@ dentistoApp.config(function($stateProvider, $urlRouterProvider,$httpProvider) {
     $window.localStorage.removeItem('type');
   };
 
+  auth.getProfile = function(){
+    return $http({
+      method: 'GET',
+      url: '/profile'
+    }).success(function(resp){
+      return resp;
+    }).error(function (data, status, header, config) {
+        alert('somt thing went wrong');
+    });
+  };
+
   auth.addcase = function(caseArg){
       return $http.post('/mycases',caseArg)
       .success(function (data, status, headers, config) {
