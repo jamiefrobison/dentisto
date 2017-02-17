@@ -1,11 +1,15 @@
 <div class="container" >
-<input type="text" name="search" placeholder="Search.." ng-model="search">
-  <h2>The Cases</h2>  
+<input type="text" name="search" id="search" placeholder="Search..." ng-model="search" align="middle">
+    <div class="row"  >
+        <div class="span4">
+            <div class="content-heading"><img id="off" style=" float:left; width:60px" src="lookup\t1.jpg"  /></div>
+            <h1 id="c" ><i>The Cases</i></h1>
+        </div>
+    </div> 
   <br>
-   <div class="media"  ng-repeat="x in cases | filter: search" >
-    <div class="media-left media-top">
-      <img  src='t1.jpg' class="media-object" style="width:80px">
-
+   <div class="media"  ng-repeat="x in cases | filter: search" id="case" >
+    <div class="media-left">
+     <img src="lookup\t1.jpg"  class="media-object" style="width:60px"/>
     </div>
     <div class="media-body">
     <form class="form-horizontal">
@@ -40,13 +44,12 @@
 
      </div>
      <div class="col-sm-10">
-      <label class="control-label col-sm-2" >Case Description:</label>
+      <label class="control-label col-sm-2" >Description:</label>
       <p class="form-control-static" ng-model="x.description">{{x.description}}</p>
      </div>
   </div> 
 </form>
 </div>
-<hr>
+<br>
 </div> 
-
 </div>
