@@ -1,8 +1,8 @@
-<div class="container" ng-hide="log">
+<div class="container">
     <div class="row">
       <div class="modal-content" >
         <div class="modal-header" style="padding:35px 50px;">
-          <button type="button" class="close" data-dismiss="modal" ng-click="log=true">&times;</button>
+          <button type="button" class="close" data-dismiss="modal" ng-click="backTohome()">&times;</button>
           <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
@@ -17,16 +17,13 @@
               <input type="password" name="user.password" class="form-control" style="background-color:#F8F8FF" id="psw" placeholder="Enter password" ng-model="user.password" required>
               <span ng-show="myForm.user.password.$touched && myForm.user.password.$validators">The password is required.</span>
             </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
+            
               <button type="submit" class="btn btn-success btn-block" id="log" ><span class="glyphicon glyphicon-off"></span> Login</button>
           </form>
         </div>
         <div class="modal-footer">
-          <button type="submit" id="can2" class="btn btn-danger btn-default pull-left" data-dismiss="modal" ng-click="log=true"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+          <button id="can2" class="btn btn-secondary btn-default pull-left" data-dismiss="modal" ng-click="backTohome()"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
           <p>Not a member? <a href="#">Sign Up</a></p>
-          <p>Forgot <a href="#">Password?</a></p>
         </div>
       </div>
 </div>
