@@ -5,6 +5,7 @@ angular.module('dentisto.studentLookup', [])
 	$scope.array=[]; // for data from search function ..
 	$scope.default=true; // to display the default data ..
 	$scope.s=false; // to display the search data ..
+	$scope.img="t1.jpg";
 
 		if(Auth.getUser()==="student"){
 			$scope.type = true;
@@ -22,24 +23,24 @@ angular.module('dentisto.studentLookup', [])
 
 
 
-	$scope.searchFun=function(){ //search function ...
-		$scope.s=true;
-		$scope.default=false;
-		if($scope.search!==""){
-			$scope.array=$scope.cases.reduce(function(acc,obj){
-				for(var k in obj){
-					if(obj[k].indexOf($scope.search)>-1){
-						acc.push(obj)
-					}
-				}
-				return acc;
-			},[])
-		}else{
-			$scope.default=true;
-			$scope.s=false;	
-		}
+	// $scope.searchFun=function(){ //search function ...
+	// 	$scope.s=true;
+	// 	$scope.default=false;
+	// 	if($scope.search!==""){
+	// 		$scope.array=$scope.cases.reduce(function(acc,obj){
+	// 			for(var k in obj){
+	// 				if(obj[k].indexOf($scope.search)>-1){
+	// 					acc.push(obj)
+	// 				}
+	// 			}
+	// 			return acc;
+	// 		},[])
+	// 	}else{
+	// 		$scope.default=true;
+	// 		$scope.s=false;	
+	// 	}
 
-	}
+	// }
 
    //try this one...
 
