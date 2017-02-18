@@ -2,16 +2,23 @@ angular.module('dentisto.userCases', ['ui.bootstrap'])
 
 
 
-.controller('casesCtrl', function($scope, $modal, Auth){
+.controller('casesCtrl', function($scope, $rootScope,$modal, Auth){
   $scope.mycases=[];
-  Auth.getCases().then(function(cases){
-    console.log(cases.da)
-     $scope.mycases =cases.data;
-  $scope.flag = ($scope.mycases.length>0)? true:false;
-  });
+  $scope.pageFlag=false;
+  $scope.flag=false;
+  $rootScope.initializeCases = function(){ 
+    Auth.getCases().then(function(cases){
+      if(cases.data.length){
+        $scope.mycases =cases.data;
+        $scope.flag = true;
+      } else{
+        $scope.flag=false;
+      }
+      $scope.pageFlag=true;
+    });
+  };
 
 
-  console.log($scope.mycases)
 	$scope.openAddCase = function () {
       var modalInstance = $modal.open({
 	    controller: 'addUserCaseCtrl',
@@ -21,7 +28,7 @@ angular.module('dentisto.userCases', ['ui.bootstrap'])
 
   $scope.delete = function (id) {
     Auth.deleteCase(id);
-
+    $rootScope.initializeCases();
   }
 
 })

@@ -1,6 +1,12 @@
 angular.module('dentisto.signup', [])
-.controller('signupClr', function ($scope, $http, Auth) {
+.controller('signupClr', function ($scope, $state, Auth) {
   $scope.info= {};
+
+  $scope.backTohome= function(){
+    console.log('here')
+    $state.go('sign.slideBar');            
+  };
+
   $scope.confirmtest=function(){
     if($scope.info.password===$scope.info.conpassword){
       $scope.f=false;
