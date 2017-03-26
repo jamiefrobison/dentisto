@@ -47,7 +47,7 @@ install node package manager "npm" tool.
 
   - __Product Owner__: Hasn Arafha
   - __Scrum Master__: Mhd Salim Bakri
-  - __Development Team Members__: Abdulazeez Abdulrazzaq, Rwaida Almehanni
+  - __Development Team Members__: Mhd Salim Bakri, Hasn Arafha, Abdulazeez Abdulrazzaq, Rwaida Almehanni
 
 ## Contributing
 
